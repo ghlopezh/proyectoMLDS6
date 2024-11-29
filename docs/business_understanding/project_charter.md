@@ -157,3 +157,9 @@ Recursos Propios y recursos de la UNAL a nivel de conocimiento y tecnico
 - Aprobador: Msc Oscar Alberto Bustos
 - [Firma del aprobador]
 - [Fecha de aprobación]
+
+Nota: Rutas de los codigos enviados por los integrantes del proyecto:
+
+- scripts/data_acquisition/carga_datos.py
+- /content/proyectoMLDS6/scripts/data_acquisition/carga_labels.py
+- csv_path = '/content/proyectoMLDS6/docs/data/data_Data_Entry_2017_v2020_ESTADO_SALUD.csv'
