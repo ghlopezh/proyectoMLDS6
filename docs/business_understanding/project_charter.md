@@ -129,28 +129,29 @@ Flujo de Herramientas:
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
-| Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
-| Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
-| Despliegue | 2 semanas | del 16 de julio al 31 de julio |
-| Evaluación y entrega final | 3 semanas | del 1 de agosto al 21 de agosto |
+| Entendimiento del negocio y carga de datos | 1 semanas | del 15 al 21 de noviembre|
+| Preprocesamiento, análisis exploratorio | 1 semanas | del 22 al 29 de noviembre|
+| Modelamiento y extracción de características | 1 semanas | 30 de noviembre al 6 de diciembre|
+| Despliegue | 1 semanas | del 7 al 14 de diciembre |
+| Evaluación y entrega final | 1 semanas | del 15 al 21 de diciembre |
 
 Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
 
 ## Equipo del Proyecto
 
-- [Nombre y cargo del líder del proyecto]
-- [Nombre y cargo de los miembros del equipo]
+- Lider del proyecto: Olga lizeth castellanos Galeano Rol: Data scientist
+- Wilson Rojas Lider Rol: Arquitectura Rol: MLOps
+- Giovanny Lopez Herazo Rol: Lider de Infraestructura 
 
 ## Presupuesto
 
-[Descripción del presupuesto asignado al proyecto]
+Recursos Propios y recursos de la UNAL a nivel de conocimiento y tecnico
 
 ## Stakeholders
 
-- [Nombre y cargo de los stakeholders del proyecto]
-- [Descripción de la relación con los stakeholders]
-- [Expectativas de los stakeholders]
+- Msc Oscar Alberto Bustos Cooordinador Proyecto Aplicado
+- Evaluador de la propuesta de proyecto aplicado
+- Expectativa; Aplicar correctamente las metodoogia Agile en machine learning
 
 ## Aprobaciones
 
