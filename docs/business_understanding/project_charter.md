@@ -1,14 +1,12 @@
 # Project Charter - Entendimiento del Negocio
 
-## Nombre del Proyecto
-
 Diagnostico de enfermedades respiratorias por emdio de machine learning utlizado imagenes de radiologia simple
 
-## Objetivo del Proyecto
+Objetivo
 
 En colombia, las infecciones respiratorias son consideradas la quinta causa de mortalidad, las imágenes diagnósticas, en especial los raxos x a nivel de la cavidad toráxica constituyen una herramienta común, económica y accesible en la mayoría de los casos para la detección y seguimiento de este tipo de enfermedades, de tal manera que su adecuado entendimiento y análisis  puede marcar una gran diferencia en la evolución de los pacientes,  en este contexto,  metodologías como el deep learning puede contribuir para un mejor entendimiento y aprovechamiento de estos exámenes clínicos.
 
-## Alcance del Proyecto
+Alcance del Proyecto
 
 Dada la naturaleza de los datos, se propone construir y entrenar una red neuronal que permita tomar una imagen diagnóstica en formato png se pueda realizar una evaluación del contenido de la imagen y retornar un posible diágnostico de enfermedad o considerar a un paciente como sano. Estos resultados pueden generar valor para la enseñanza de casos clínicos de imaginología en el internado médico.
 
@@ -129,11 +127,11 @@ Flujo de Herramientas:
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 1 semanas | del 15 al 21 de noviembre|
-| Preprocesamiento, análisis exploratorio | 1 semanas | del 22 al 29 de noviembre|
-| Modelamiento y extracción de características | 1 semanas | 30 de noviembre al 6 de diciembre|
-| Despliegue | 1 semanas | del 7 al 14 de diciembre |
-| Evaluación y entrega final | 1 semanas | del 15 al 21 de diciembre |
+| Definición del Problema de Negocio| 1 semanas | del 15 al 21 de noviembre|
+| Adquisición y Comprensión de los Datos| 1 semanas | del 22 al 29 de noviembre|
+| Modelado| 1 semanas | 30 de noviembre al 6 de diciembre|
+| Implementacion | 1 semanas | del 7 al 14 de diciembre |
+| Supervisión y Mantenimiento y entrega final | 1 semanas | del 15 al 21 de diciembre |
 
 Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
 
