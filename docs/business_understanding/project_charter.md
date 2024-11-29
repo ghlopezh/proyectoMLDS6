@@ -10,11 +10,37 @@ En colombia, las infecciones respiratorias son consideradas la quinta causa de m
 
 ## Alcance del Proyecto
 
+Dada la naturaleza de los datos, se propone construir y entrenar una red neuronal que permita tomar una imagen diagnóstica en formato png se pueda realizar una evaluación del contenido de la imagen y retornar un posible diágnostico de enfermedad o considerar a un paciente como sano. Estos resultados pueden generar valor para la enseñanza de casos clínicos de imaginología en el internado médico.
+
 ### Incluye:
 
-- [Descripción de los datos disponibles]
+- Descripción de los datos disponibles
+
+Provide a link to the NIH download site: https://nihcc.app.box.com/v/ChestXray-NIHCC
+Include a citation to the CVPR 2017 paper (see Citation information section)
+Acknowledge that the NIH Clinical Center is the data provider
+
+Citation Information
+
+@inproceedings{Wang_2017,
+    doi = {10.1109/cvpr.2017.369},
+    url = {https://doi.org/10.1109%2Fcvpr.2017.369},
+    year = 2017,
+    month = {jul},
+    publisher = {{IEEE}
+},
+    author = {Xiaosong Wang and Yifan Peng and Le Lu and Zhiyong Lu and Mohammadhadi Bagheri and Ronald M. Summers},
+    title = {{ChestX}-Ray8: Hospital-Scale Chest X-Ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases},
+    booktitle = {2017 {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})}
+}
+
 - [Descripción de los resultados esperados]
+
+The text-mined disease labels are expected to have accuracy >90%.Please find more details and benchmark performance of trained models based on 14 disease labels in our arxiv paper: 1705.02315
+
 - [Criterios de éxito del proyecto]
+
+
 
 ### Excluye:
 
