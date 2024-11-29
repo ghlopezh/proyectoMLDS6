@@ -149,12 +149,13 @@ Recursos Propios y recursos de la UNAL a nivel de conocimiento y tecnico
 
 ## Stakeholders
 
-- Msc Oscar Alberto Bustos Cooordinador Proyecto Aplicado
+- Msc Oscar Alberto Bustos Evaluador Proyecto Aplicado
 - Evaluador de la propuesta de proyecto aplicado
 - Expectativa; Aplicar correctamente las metodoogia Agile en machine learning
+- Personal interesado medico
 
 ## Aprobaciones
 
-- [Nombre y cargo del aprobador del proyecto]
+- Aprobador: Msc Oscar Alberto Bustos
 - [Firma del aprobador]
 - [Fecha de aprobación]
