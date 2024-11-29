@@ -51,7 +51,79 @@ The text-mined disease labels are expected to have accuracy >90%.Please find mor
 
 ## Metodología
 
-[Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
+Fase 1: Definición del Problema de Negocio
+
+	•	Problema: Crear un modelo basado en ResNet50 para clasificar imágenes de rayos X del tórax y detectar enfermedades como neumonía o enfisema.
+	•	Objetivo: Mejorar la precisión del diagnóstico automatizado.
+	•	Métricas de éxito:
+	•	Precisión (Accuracy).
+	•	Sensibilidad (Recall) y especificidad.
+	•	Área bajo la curva ROC (AUC-ROC).
+	•	Integración con Herramientas:
+	•	Usar GitHub para versionar el código del proyecto.
+	•	Configurar DVC para versionar los datos del dataset NIH y facilitar la reproducibilidad.
+	•	Definir un flujo de experimentación con MLflow para registrar hiperparámetros, métricas y versiones del modelo.
+
+Fase 2: Adquisición y Comprensión de los Datos
+
+	•	Actividades:
+	1.	Descargar el dataset desde Hugging Face.
+	2.	Analizar y limpiar los datos (calidad, clases desbalanceadas, imágenes corruptas).
+	3.	Dividir los datos en conjuntos de entrenamiento, validación y prueba (70/15/15).
+	4.	Subir los datos crudos al repositorio GitHub (o a un almacenamiento externo) y versionarlos con DVC:
+	•	Inicializar un repositorio con dvc init.
+	•	Rastrear los datos con dvc add.
+	•	Subir los datos a un almacenamiento remoto (como S3 o Google Drive).
+	•	Resultado:
+	•	Datos versionados y reproducibles.
+	•	Historial de cambios en los datos gestionado por DVC.
+
+Fase 3: Modelado
+
+	•	Actividades:
+	1.	Preprocesamiento:
+	•	Normalizar imágenes y aplicar data augmentation (rotación, escalado, etc.).
+	•	Configurar pipelines con DVC para etapas como preprocesamiento, entrenamiento y evaluación.
+	2.	Entrenamiento del Modelo:
+	•	Usar ResNet50 preentrenada y adaptar la última capa para las clases del dataset.
+	•	Registrar los experimentos con MLflow:
+	•	Guardar hiperparámetros como learning rate, batch size, y número de épocas.
+	•	Registrar métricas como precisión, pérdida, y AUC.
+	•	Usar DVC para rastrear los modelos generados y los resultados intermedios.
+	3.	Validación y Comparación de Experimentos:
+	•	Analizar métricas en MLflow para identificar las mejores configuraciones.
+	•	Guardar el mejor modelo en MLflow para su despliegue posterior.
+
+Fase 4: Implementación
+
+	•	Actividades:
+	1.	Convertir el modelo final a un formato optimizado (como ONNX o TensorFlow Lite).
+	2.	Desplegar el modelo utilizando un servidor de predicciones, como FastAPI o Flask.
+	3.	Usar MLflow para gestionar el despliegue del modelo:
+	•	Registrar el modelo como parte de MLflow Model Registry.
+	•	Configurar un entorno de producción y pruebas para el modelo.
+	4.	Documentar el proceso de despliegue y subir el código a GitHub.
+
+Fase 5: Supervisión y Mantenimiento
+
+	•	Actividades:
+	1.	Monitorear el rendimiento del modelo en producción, usando métricas como precisión y tasa de error.
+	2.	Versionar nuevos conjuntos de datos con DVC cuando se disponga de imágenes actualizadas.
+	3.	Iterar sobre nuevos experimentos registrados con MLflow para mejorar continuamente el modelo.
+	4.	Realizar revisiones periódicas del código y la documentación en GitHub, y mantener issues o pull requests para gestionar colaboraciones.
+
+Flujo de Herramientas:
+
+	1.	GitHub:
+	•	Control de versiones del código y scripts del proyecto.
+	•	Documentación del proyecto en el repositorio.
+	2.	DVC:
+	•	Versionamiento de los datos (dataset y modelos entrenados).
+	•	Gestión de pipelines reproducibles.
+	3.	MLflow:
+	•	Registro de experimentos, métricas, y parámetros del modelo.
+	•	Gestión y despliegue del modelo en producción.
+
 
 ## Cronograma
 
