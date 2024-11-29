@@ -44,7 +44,10 @@ The text-mined disease labels are expected to have accuracy >90%.Please find mor
 
 ### Excluye:
 
-- [Descripción de lo que no está incluido en el proyecto]
+- Se excluye del proyecto:
+- Puesta en producción para fines comerciales
+- La disposición de API para consumo de aplicaciones dado los datos confidenciales y los resultados de los pacientes
+- Utilzacion de datos de origen confidencial
 
 ## Metodología
 
