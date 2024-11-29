@@ -2,11 +2,11 @@
 
 ## Nombre del Proyecto
 
-[Nombre del proyecto aquí]
+Diagnostico de enfermedades respiratorias por emdio de machine learning utlizado imagenes de radiologia simple
 
 ## Objetivo del Proyecto
 
-[Descripción breve del objetivo del proyecto y por qué es importante]
+En colombia, las infecciones respiratorias son consideradas la quinta causa de mortalidad, las imágenes diagnósticas, en especial los raxos x a nivel de la cavidad toráxica constituyen una herramienta común, económica y accesible en la mayoría de los casos para la detección y seguimiento de este tipo de enfermedades, de tal manera que su adecuado entendimiento y análisis  puede marcar una gran diferencia en la evolución de los pacientes,  en este contexto,  metodologías como el deep learning puede contribuir para un mejor entendimiento y aprovechamiento de estos exámenes clínicos.
 
 ## Alcance del Proyecto
 
