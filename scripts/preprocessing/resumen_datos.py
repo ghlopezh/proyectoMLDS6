@@ -54,12 +54,10 @@ peso
 #cantidad = !ls -1 /root/.cache/huggingface/datasets/downloads/extracted/ac866273977ae75ab1ad5e5f4cbef6f220bf1511db65b340d8a024565b33b856/images | wc -l
 #cantidad
 
-
 # Resumen de los datos 
 #import imghdr
 #imghdr.what('/content/images/00028523_019.png')
 
-import os
 def count_file_formats(folder_path):
   """
   Identifica todos los tipos de formato de los archivos en la carpeta especificada
@@ -85,8 +83,8 @@ image_folder_path = '/root/.cache/huggingface/datasets/downloads/extracted/ac866
 file_counts = count_file_formats(image_folder_path)
 print(file_counts)
 
-## Tipos de variables adicionales 
 
-import pandas as pd
+## Tipos de variables adicionales 
 df = pd.read_csv('/content/data_Data_Entry_2017_v2020_ESTADO_SALUD.csv', sep=';')
 df.describe()
+
