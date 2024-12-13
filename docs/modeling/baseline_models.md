@@ -1,28 +1,87 @@
-# Reporte del Modelo Baseline
+﻿# Reporte del Modelo Baseline
 
-Este documento contiene los resultados del modelo baseline.
 
-## Descripción del modelo
 
-El modelo baseline es el primer modelo construido y se utiliza para establecer una línea base para el rendimiento de los modelos posteriores.
+## Descripción del modelo ResNet18
+
+ResNet18 es un modelo de red neuronal convolucional (CNN) basado en la arquitectura ResNet (Residual Network), diseñada para facilitar el entrenamiento de redes profundas mediante el uso de conexiones residuales. Fue introducida en el artículo  _“Deep Residual Learning for Image Recognition”_  por Kaiming He y colaboradores en 2015. 
+  
+
+**Características clave de ResNet18:**
+
+1.  **Profundidad**:
+
+•  ResNet18 tiene 18 capas de red que incluyen capas convolucionales, capas de normalización por lotes (_batch normalization_), y capas completamente conectadas.
+
+•  Se organiza en bloques residuales, cada uno compuesto por dos capas convolucionales.
+
+2.  **Bloques residuales**:
+
+•  Cada bloque residual incluye un atajo (_shortcut connection_) que permite sumar la entrada del bloque a su salida. Esto ayuda a mitigar el problema del  _vanishing gradient_  en redes profundas, mejorando la capacidad de aprendizaje.
+
+•  La operación matemática en cada bloque es:
+
+  
+
+y = \mathcal{F}(x) + x
+
+  
+
+Donde  \mathcal{F}(x) representa las operaciones convolucionales y  x es la entrada al bloque.
+
+3.  **Arquitectura básica**:
+
+•  La arquitectura sigue un diseño escalonado, con un número creciente de filtros a medida que la red profundiza:
+
+•  **Etapa 1**: Una convolución inicial de 7x7 seguida de una operación de  _max pooling_.
+
+•  **Etapas 2-5**: Secuencias de bloques residuales con convoluciones 3x3. Los números de filtros son 64, 128, 256 y 512, respectivamente.
+
+•  Cada bloque está diseñado para mantener o cambiar las dimensiones espaciales, dependiendo de si es necesario reducir la resolución de la imagen (usualmente por medio de un  _stride_  de 2).
+
+4.  **Clasificación**:
+
+•  La red termina con una capa de  _global average pooling_  seguida de una capa completamente conectada con activación  _softmax_para la clasificación.
+
+5.  **Parámetros y tamaño**:
+
+•  ResNet18 tiene aproximadamente  **11.7 millones de parámetros**, lo que la hace relativamente liviana en comparación con arquitecturas más profundas como ResNet50 o ResNet101.
 
 ## Variables de entrada
 
-Lista de las variables de entrada utilizadas en el modelo.
+El conjunto de datos de radiografías de tórax comprende 112.120 imágenes de rayos X de vista frontal de 30.805 pacientes únicos con las catorce etiquetas de imágenes de enfermedades extraídas de texto (donde cada imagen puede tener múltiples etiquetas), extraídas de los informes radiológicos asociados mediante procesamiento de lenguaje natural. Catorce patologías torácicas comunes incluyen Atelectasia, Consolidación, Infiltración, Neumotórax, Edema, Enfisema, Fibrosis, Derrame, Neumonía, Pleural_thickening, Cardiomegalia, Nódulo, Masa y Hernia, que es una extensión de los 8 patrones de enfermedad comunes enumerados en nuestro artículo de CVPR2017. Tenga en cuenta que los informes radiológicos originales (asociados con estos estudios de radiografías de tórax) no deben compartirse públicamente por muchas razones. Se espera que las etiquetas de enfermedades extraídas por texto tengan una precisión >90%. Nota tomado el dataset https://huggingface.co/datasets/alkzar90/NIH-Chest-X-ray-dataset
 
+Para este ejercicio se tomo solo con una cantidad de archivos zip, de acuerdo a los recursos disponibles en google colab. 
+
+Url ubicación de los https://nihcc.app.box.com/v/ChestXray-NIHCC/folder/37178474737
+
+Las etiquetas para cada imagen estan en el archivo csv : docs/data llamado: [data_Data_Entry_2017_v2020_ESTADO_SALUD.csv](https://github.com/ghlopezh/proyectoMLDS6/blob/master/docs/data/data_Data_Entry_2017_v2020_ESTADO_SALUD.csv "data_Data_Entry_2017_v2020_ESTADO_SALUD.csv") ,
+
+Contiene dos atributos: Nombre de la imagen y estado: 0-Sano 1-Enfermo
 ## Variable objetivo
 
-Nombre de la variable objetivo utilizada en el modelo.
+El objetivo de este análisis es la clasificación del estado de salud de un pacientes según su imagen diagnóstica, en la que es posible que sea identifacada alguna de las 8 patologias pulmonares más comunes o se determine que está sano. Para efectos practicos se construye un dataset para desarrollar un problema de clasificacion binaria, no multiclase, siendo cero (0) para ausencia de alguna enfermedad y uno (1) cuando se tiene la presencia de alguna patologia.
+
+Para el modelamiento, en principio, se va a explorar el uso de una red convolucional específicamente un modelo ResNet-50 que es ampliamente recomendada para clasificación de imágenes y que según el paper en el que disponibilizan la información es el modelo preentrenado que genera mejores resultados dado el contexto.
+
 
 ## Evaluación del modelo
 
 ### Métricas de evaluación
 
-Descripción de las métricas utilizadas para evaluar el rendimiento del modelo.
+Se realiza el entrenamiento en los correspondientes códigos ubicados en: scripts/training
+archivos py:
+[train_epoc15.py] y  [training_10Epoch.py]
+
+Luego se realiza la evalucion con la métrica de accuracy en los siguientes códigos ubicados en: scripts/evaluation
+archivos py:
+[eval_epoc10.py] y [eval_epoc15.py]
 
 ### Resultados de evaluación
 
-Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
+El modelo seleccionado busca clasificar a los pacientes entre sanos y enfermos (0 ó 1) según la imagen diagnóstica radiológica, tras múltiples pruebas, esta categorización binaria fue construida a partir del etiquetado de los datos, asignando el valor 0 a aquellos a los cuales no se les asignó una enfermedad y 1 a aquellos a los cuales se identificó alguna de los 8 enfermedades etiquetadas por médicos radiólogos. Encontramos que definir 15 epochs nos ofrece una menor pérdida y mayor precisión que otras epochs de menor dimensión-
+
+![image.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf8AAABRCAIAAABT8jjDAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAB/6ADAAQAAAABAAAAUQAAAACStzvjAAAbOElEQVR4Ae2defgW0/vHv/lZiySVskTIkkQXspRfi8haKHtlK6Rku1yhLnxDlsiaXZaoLkW2IkslUZStEEJZQlkTWX/8Xjnf77nOde6Z85mZ53nmmXmeM398Pue5z3bf7/ueM2fOzLzPv/7lD4+AR8Aj4BGoPgRqYfLff/+da8Nr1aqVdxNyjb9XvlgI+EguFpK+nRoRINhWq7GQL+AR8Ah4BDwClYeAH/0rz6feIo+AR8AjUDMCq9dcxJdIBQEWr/744w+6Wm211VZf/T9+0UJu09ZYYw2liBaqn//zz0FaymmKNnWB//vnWHPNNX///XdVV/2luz///JO0u5ew1lQjqnGUpBEkShnTFjRBSO8qi04pqUxWLaBnWBdSYUpS66effqKdtddeW7Xg/2YWgbDg1GEgo1RWIcZMA1Xc8lcFA0FCgnYCY161FtaLboT2f/75Z5raYIMNzL4qNg0uuT5wTK71V8q/+uqrKsIYE7fddttnn30WuRaS1bhx4xtvvNESIj/hhBOsFlQ7yFX1Vq1acdpQpk+fPmuttRYJ/qoy6u+9996rfzp6CWtN9d6pUycaefDBBy1lOJeQLFu2THXxyy+/qHYuu+wy0zpyYyk8Z86cdu3acbFh6O/cufOHH36o+s31X0DItf4O5S1fDxkyxAoDGaVWFcIjMG6vv/56+lXTiAMOOEDVCmstTE400shbb73Vvn17Jig4ok2bNpURVGFOwUY/9weEDB2Eb4sWLUaOHNm9e/fvv/9eacbA2rJly7vuuuucc87p27evEu6zzz4dOnQgvfPOOytJmHzevHkMyr169dLFLr744qVLl95www177LGH6pGsiL3I1qj73XffzZgxg8TEiROPPfZY3RGJ22+//eyzzx4xYoQpNNPSENmFpXDr1q27du36+eefgwbT/wceeOC4446bPXu22axPZxAB7eu9997bUk86XRXQVYjzbbbZxozbBg0aWI3on2GthcmpyAyJk27x4sVnnnkmtwhXX3117969X3rpJd1mZSbCLg55keOVvKjq0FNPhShzzDHHYNSCBQtMIbGI8P333zeFZoNSriTU2mKLLX777Tc996fWRx99hJxxmbRZ0dGLo7X77ruP1tq2bVunTh1m97pNhBtvvPGXX3653nrrkeaQc3817VKGOLowFVbn5KmnnqpqHXTQQbT86aefqp/5/YsV+VXerbkZY6qkloQ5XRcwWzbD4MknnwSxwLk/civma+xFzR50UDGx2G233dSdq6lAxaSBaNXiqT+ygwAz2XfffXf+/PnMPpo0aaIUe/vtt++///7p06cz92nevLkSMssmQDlef/11U38p79atGzOaW265xSwm0xF7CWzt0UcfZSJ23nnncbawZqUbHzhwIEM/U3XWZ44++mgtNxMJFOYOnRa4a1HtqIQSmi37dNYQIE4YXjm4b7N0C4wrysjwsCoG/gxrLUxOI2+88QZ/VSxxh3HppZc+8cQTahUosIsKEPrRP1tOvPLKK3fYYYd33nln6NCh66+/vlJu3Lhxxx9/PHPbQYMGqWeqyLlOsJjOwaTetEHKjzjiCJbIL7/88uXLl5slrXTEXmRrTOenTJnC2lSjRo1ok9NVt8wyK3fTX331FWtW3BZouZlIoDBVaEE/7FUJJTRb9umsIbBixQqCgcN82q+UlHGl5DI8ohgV1lqYnDZ1ULEExNMvdVT2lMKP/lFiKb0yzOVfeeUVVvwvvPBC3eu///3vb7/9ds899zz99NP1CM46/mP/HMh1SRJSzgWDZXdaGD9+vFnSSkfsRbb2zDPPrFy5kluTvfbaizaZMZnvZrCwwz1B//79re70zwQK77TTTlTX9/IqoYS6WZ/IIALa182aNbPUk3GlCugqVpyTW69ePf5yLeEvs3UtIRHWWpicKtyh8pezj9tu7gO4CaDwVltthbBSD//UN1ue3XzzzXnZwNKJcKxfv37Pnj1nzZr13HPPNW3alAJz584dNWoUCZaDmNrrKqZcvyPBCibVR48erYvJRI29hLXG7TytTZ48GSXpgkfWM2fOrF27tuqC95d4gCa705IECnOZYQVs+PDhvPPz66+/ggOPr+lIt+kTeUQgMErN8DDjHAO53hOThNwmm2zC5AOJee4EtkaZMDlXF164uOaaa3hGxZujU6dOpTt1gaFWRR5+7p8VtzLRkKqYQqKWAi+88IISMuae/M9x9913q4pSblYfNmyYHpF1R6qAWczR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)
 
 ## Análisis de los resultados
 
