@@ -1,3 +1,9 @@
+import cv2
+import datasets
+from datasets import DownloadManager
+import pandas as pd
+from pandas import read_csv
+
 
 _HOMEPAGE = "https://nihcc.app.box.com/v/chestxray-nihcc"
 _REPO = "https://huggingface.co/datasets/alkzar90/NIH-Chest-X-ray-dataset/resolve/main/data"
@@ -44,3 +50,45 @@ _LABEL2IDX = {"No Finding": 0,
 
 _NAMES = list(_LABEL2IDX.keys())
 
+
+logger.info("Downloading the train_val_list image names")
+train_val_list = get(_URLS['train_val_list']).iter_lines()
+train_val_list = set([x.decode('UTF8') for x in train_val_list])
+logger.info(f"Check train_val_list: {train_val_list}")
+
+# Create list for store the name of the images for each dataset
+train_files = []
+test_files = []
+
+dl_manager = DownloadManager()
+
+# Download batches
+data_files = dl_manager.download_and_extract(_URLS["image_urls"])
+
+
+# Iterate trought image folder and check if they belong to the trainset or testset
+for batch in data_files:
+		logger.info(f"Batch for data_files: {batch}")
+		path_files = dl_manager.iter_files(batch)
+		for img in path_files:
+		    if os.path.basename(img) in train_val_list:
+		      train_files.append(img)
+		    else:
+		      test_files.append(img)
+
+datasets.SplitGenerator(
+			name=datasets.Split.TRAIN,
+			gen_kwargs={
+				"files": train_files
+			}
+		    ),
+datasets.SplitGenerator(
+			name=datasets.Split.TEST,
+			gen_kwargs={
+				"files": test_files
+			}
+		    )
+
+# Separar el conjunto de datos entre entrenamiento y prueba
+train_df = df[df['Image Index'].isin([os.path.basename(path) for path in train_files])]
+test_df = df[df['Image Index'].isin([os.path.basename(path) for path in test_files])]
