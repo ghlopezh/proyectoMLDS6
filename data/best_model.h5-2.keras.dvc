@@ -1,0 +1,5 @@
+outs:
+- md5: 187837a5c1fee7854c31792dcfdd9bc2
+  size: 120175019
+  hash: md5
+  path: best_model.h5-2.keras
